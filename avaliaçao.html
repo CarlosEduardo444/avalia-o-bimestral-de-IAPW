@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSite</title>
+<style>
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 5.0s ease forwards;
+  animation-delay: 3.0s;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+body {
+    background-color: beige;
+    font-family: 'Helvetica Neue', sans-serif;
+    margin: 0;
+    line-height: 1.6;
+}
+.container{
+    background-color: #FAE5C3;
+    border-radius: 20px;
+    width:95%;
+    max-width: 1200px;
+    margin: 1em auto;
+    padding: 0 1rem;
+    box-sizing:border-box;
+    overflow: hidden;
+  }
+h2 h3 h4 h5{
+    margin: 0;
+  }
+p{
+    color: #555;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+a{
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s, transform 0.3s;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+.cabecalho{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+.cabecalho h1{
+    font-style: italic;
+    color: #FFB74D;
+    font-size: 2.5rem;
+    transition: color 0.3s, transform 0.3s;
+}
+.cabecalho h1:hover {
+    color: #FF8C42;
+    transform: scale(1.2)
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+nav a:hover{
+    color: #A94438;
+}
+nav select{
+    padding:0.3em;
+    border: 0.6px groove #F9F5F0;
+    border-radius:0.7em;
+    background-color:transparent;
+    box-shadow:0 3px 6px rgba(0,0,0,0.5);
+}
+nav select:hover{
+    transform: scale(1.3); 
+}
+#sing {
+    border: 0.7px solid #F9F5F0;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+}
+#sing:hover {
+    background-color: #FF8C42;
+    color: white;
+}
+.principal {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 2rem;
+}
+.imagemM {
+    order: -1;
+}
+.textos h5 {
+    color: #cc4c28;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+.textos h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+.textos h2::first-letter{
+    font-weight: bold;
+    color: #cc4c28;
+    font-family: Georgia, serif;
+}
+.botoes {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+#botao1 {
+    background-color: orange;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.6);
+}
+#botao1:hover{
+    background-color:#FF8C42;
+    transform: scale(1.06);
+}
+#botao2 {
+    display: flex;
+    align-items: center;
+    gap: 0.8em;
+    font-weight: bold;
+}
+.botoes span{
+    background-color: #C0392B;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+}
+  .botoes span::before{
+    content: "▶";
+    padding-left: 2px;
+  }
+.secao{
+    padding: 3rem 1rem;
+    text-align: center;
+    height: 60%;
+}
+.secao h3 {
+    color: #555;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.secao h2 {
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+.servicos, .destinos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+.servicos .item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1.4em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.servicos .item span{
+    border: 1px solid #F9F5F0;
+    font-size:50px;
+    padding: 0.2em;
+    border-radius: 0.4em;
+    background-color: #FFEBCD;
+}
+.destinos .card {
+    background-color: white;
+    border-radius: 1.3em;
+    overflow: hidden;
+    box-shadow: 0 6px 13px rgba(0,0,0,0.3);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+.destinos .card:hover {
+    transform: translateY(-10px);
+}
+.destinos .card img {
+    width: 100%;
+    height: 28em;
+    object-fit: cover;
+}
+.destinos .cards {
+    padding: 1.5rem;
+    text-align: left;
+}
+.destinos .cards p {
+    margin: 0.5rem 0;
+}
+.psaps {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem 1rem;
+    font-style: normal;
+}
+.psT ul{
+    margin-top: 2rem;
+}
+.psT .ele{
+    display:flex;
+    gap:1.5em;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+.psT .ele span {
+    flex-shrink: 0;
+    width:48px;
+    height:48px;
+    border-radius:12px;
+}
+#yello{
+    background-color:#D2B48C; 
+}
+#red{ 
+    background-color:#FF6347; 
+}
+#green{
+    background-color:#228B22; 
+}
+.psT strong {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.ps2 {
+    background-color: #FFF7EB;
+    padding: 1.5em;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    height: auto;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+.ps2:hover{
+    transform: scale(1.1);  
+}
+.ps2 img { 
+  width: 100%;
+  border-radius: 1em;
+  margin-bottom: 1rem; 
+}
+.ps2 h4{
+  margin-top:0; 
+}
+.ps2 h5{
+  color:#B0B0B0; margin:0.2rem 0; 
+}
+.ps2 .icons{
+  display:flex; gap:1em; margin:1rem 0; 
+}
+.ps2 .icons .icon1, .icon2, .icon3{
+  border-radius:50%;
+  padding:0.6rem;
+  background-color:#eeeeee; 
+}
+.ps2 .icons .icon1::before{
+  content:"🍀";
+}
+.ps2 .icons .icon2::before{
+  content:"🔰";
+}
+.ps2 .icons .icon3::before{
+  content:"✈️";
+}
+.ps2 .like{
+  display:flex;
+}
+.ps2 .like button{
+  margin-left:auto;
+  border: 0.6px solid #eeeeee;
+  border-radius: 50%;
+}
+.inscrever {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    margin: 2rem 0 0 0;
+    border-radius: 20px 20px 0 0;
+    background-color:#D8BC9F;
+    border: none;
+}
+.inscrever h2 {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.inscrever form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.inscrever input {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 350px;
+    box-sizing: border-box;
+}
+#botao {
+    background-color: rgb(255, 165, 0);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: bold;
+    width: 100%;
+    max-width: 350px;
+}
+@media (min-width: 768px)
+{
+    .container {
+       padding: 0 2rem; 
+    }
+    .cabecalho {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    nav {
+        flex-direction: row;
+        gap: 1.5em;
+    }
+    .container .principal {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+    }
+    .imagemM {
+        order: 1; 
+    }
+    .textos h2 { 
+        font-size: 3.5rem; 
+    }
+    .botoes {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .servicos, .destinos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .inscrever form {
+        flex-direction: row;
+        justify-content: center;
+    }
+    .inscrever input #botao {
+        width: auto;
+        min-width: 300px;
+   }
+    #botao { 
+        min-width: auto;  
+    }
+}
+@media (min-width: 1024px) {
+    .destinos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .psaps {
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+    }
+    .inscrever {
+        margin: 0 4em;
+    }
+}
+@media (min-width: 1200px) {
+    .servicos { 
+       grid-template-columns: repeat(4, 1fr);
+    }
+    .textos h2 { 
+       font-size: 4.2rem;
+    }
+    .container { 
+       padding: 0 3rem; 
+    }
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <header class="cabecalho">
+            <h1>Jadoo</h1>
+            <nav>
+                <a href="#">Destinations</a>
+                <a href="#">Hotels</a>
+                <a href="#">Flights</a>
+                <a href="#">Bookings</a>
+                <a href="#">Login</a>
+                <button id="sing">Sign up</button>
+                <select name = "linguagem">
+                <option valume="ingles">EN</option>
+                <option valume ="portugues">PT</option>
+    </select>
+            </nav>
+        </header>
+         <main>
+            <section class="principal">
+                <div class="textos">
+                    <h5>BEST DESTINATIONS AROUND THE WORLD</h5>
+                    <h2>Travel, enjoy and live a new and full life</h2>
+                    <p>Built Wicket longer admire do barton vanity itself do in it. Preferred to sportsmen it engrossed listening. Park gate sell they west hard for the.</p>
+                    <div class="botoes">
+                        <a href="#" id="botao1">Find out more</a>
+                        <a href="#" id="botao2">
+                            <span></span> Play Demo
+                        </a>
+                    </div>
+                </div>
+                <div class="imagemM">
+                    <img src="https://files.catbox.moe/criaqz.png">
+                </div>
+            </section>
+            <section class="secao">
+                <h3>CATEGORY</h3>
+                <h2>We Offer Best Services</h2>
+                <div class="servicos">
+                    <div class="item fade-in">
+                        <span>📡</span>
+                        <h4>Calculated Weather</h4>
+                        <p>Built Wicket longer admire do barton vanity itself do in it.</p>
+                    </div>
+                    <div class="item fade-in">
+                        <span>🛫</span>
+                        <h4>Best Flights</h4>
+                        <p>Engrossed listening. Park gate sell they west hard for the.</p>
+                    </div>
+                    <div class="item fade-in">
+                        <span>🎙️</span>
+                        <h4>Local Events</h4>
+                        <P>Preferred to men it engrossed listening. Park gate sell they west hard for the.</P>
+                    </div>
+                    <div class="item fade-in">
+                        <span>⚙️</span>
+                        <h4>Customization</h4>
+                        <p>We deliver outsourced aviation services for military customers.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="secao">
+                <h3>Top Selling</h3>
+                <h2>Top Destinations</h2>
+                <div class="destinos">
+                    <div class="card">
+                        <img src="https://files.catbox.moe/5emnho.jpg">
+                        <div class="cards">
+                            <p><strong>Rome, Italy</strong></p>
+                            <p>$5,42k</p>
+                            <p>10 Days Trip</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://files.catbox.moe/ya0xsa.jpg">
+                        <div class="cards">
+                            <p><strong>London, UK</strong></p>
+                            <p>$4.2k</p>
+                            <p>12 Days Trip</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://files.catbox.moe/82wf4w.jpg">
+                        <div class="cards">
+                            <p><strong>Full Europe</strong></p>
+                            <p>$15k</p>
+                            <p>28 Days Trip</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="psaps">
+                <div class="psT">
+                    <h3>Easy and Fast</h3>
+                    <h2>Book Your Next Trip in 3 Easy Steps</h2>
+                    <ul>
+                        <li class="ele">
+                            <span id="yello"></span>
+                            <div>
+                                <strong>Choose Destination</strong>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+                            </div>
+                        </li>
+                        <li class="ele">
+                            <span id="red"></span>
+                            <div>
+                                <strong>Make Payment</strong>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+                            </div>
+                        </li>
+                        <li class="ele">
+                            <span id="green"></span>
+                            <div>
+                                <strong>Reach Airport on Selected Date</strong>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna, tortor tempus.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ps2">
+                    <img src="https://st5.depositphotos.com/1027198/64645/i/450/depositphotos_646458804-stock-photo-woman-looking-panoramic-view-france.jpg">
+                    <h4>Trip To Greece</h4>
+                    <h5>14-29 June | by Robbin Join</h5>
+                    <div class="icons">
+                        <span class="icon1"></span>
+                        <span class="icon2"></span>
+                        <span class="icon3"></span>
+                    </div>
+                    <div class="like">
+                    <h5>🏦 24 people going</h5>
+                    <button> 🤍</button>
+                    </div>
+                </div>
+            </section>
+            <section class="inscrever">
+                <h2>Subscribe to get information, latest news and other interesting offers about Jadoo</h2>
+                <form>
+                    <input type="email" placeholder="📧 Your email" required>
+                    <button type="submit" id="botao">Subscribe</button>
+                </form>
+            </section>
+        </main>
+   </div>
+</body>
+</html>
